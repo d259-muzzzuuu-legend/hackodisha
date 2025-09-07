@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, blue, rgb(93, 9, 23), purple);
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .name{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    h1 {
+      font-size: 50px;
+      margin-bottom: 20px;
+    }
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      width: 300px;
+      height: 400px;
+      perspective: 1000px;
+    }
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 3s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      backface-visibility: hidden;
+      background: linear-gradient(135deg, rgb(120, 120, 217), rgb(163, 67, 83), rgb(220, 111, 220));
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .card-front img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+    }
+    .card-front .name {
+      margin: 15px 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: black;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+      padding: 20px;
+      display: flex;
+      
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .bio {
+      font-size: 0.9em;
+      color: black;
+      margin-bottom: 20px;
+    }
+    .social {
+      display: flex;
+      gap: 15px;
+    }
+    .social a {
+      width: 30px;
+      height: 30px;
+    }
+    .social svg {
+      width: 100%;
+      height: 100%;
+      /* fill: #1e4b78; */
+      transition: fill 0.3s;
+    }
+    .social a:hover svg {
+      fill: #0b1621;
+        transform: scale(1.5); /* makes it bigger */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6); /* white glow */
+
+    }
+  </style>
+</head>
+<body>
+  <h1>Our Team</h1>
+  <div class="team">
+    <!-- Card 1 -->
+    <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="swastika.jpg" alt="Akash">
+          <p class="name">Swatika Samant</p>
+        </div>
+        <div class="card-back">
+          <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/swastika-samant-a06734332" target="_blank">
+              <!-- LinkedIn Icon -->
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40" fill="#0A66C2">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+</svg>
+
+            </a>
+           <a href="https://github.com/Swastika14-p" target="_blank" rel="noopener noreferrer">
+  <!-- GitHub Icon -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="40" height="40"  fill="#000000">
+  <path d="M256 32C132.3 32 32 132.3 32 256c0 99.5 64.5 183.9 153.9 213.8
+           11.3 2 15.4-4.9 15.4-10.9 0-5.4-.2-23.4-.3-42.4-62.6 13.6-75.8-26.9-75.8-26.9
+           -10.2-25.9-24.9-32.8-24.9-32.8-20.4-14 1.5-13.7 1.5-13.7 22.6 1.6 34.5 23.2
+           34.5 23.2 20 34.3 52.6 24.4 65.5 18.7 2-14.5 7.8-24.4 14.1-30
+           -50-5.7-102.5-25-102.5-111.3 0-24.6 8.8-44.8 23.2-60.6
+           -2.3-5.7-10.1-28.8 2.2-60.1 0 0 18.9-6 62 23.1 18-5 37.3-7.5 56.5-7.6
+           19.2.1 38.6 2.6 56.6 7.6 43.1-29.1 62-23.1 62-23.1 12.3 31.3 4.5 54.4
+           2.2 60.1 14.4 15.8 23.2 36 23.2 60.6 0 86.5-52.6 105.5-102.7 111.1
+           8 6.9 15.1 20.5 15.1 41.3 0 29.8-.3 53.9-.3 61.2 0 6 4 13 15.5 10.8
+           C399.5 439.9 464 355.5 464 256 464 132.3 363.7 32 256 32z"/>
+</svg> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add more cards by duplicating -->
+ <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="adyasha.jpg" alt="Akash">
+          <p class="name">Adyasha Anurupa</p>
+        </div>
+        <div class="card-back">
+          <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/adyasha-anurupa-54511a381/" target="_blank">
+              <!-- LinkedIn Icon -->
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40" fill="#0A66C2">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+</svg>
+
+            </a>
+           <a href="https://github.com/adie326" target="_blank" rel="noopener noreferrer">
+  <!-- GitHub Icon -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="40" height="40"  fill="#000000">
+  <path d="M256 32C132.3 32 32 132.3 32 256c0 99.5 64.5 183.9 153.9 213.8
+           11.3 2 15.4-4.9 15.4-10.9 0-5.4-.2-23.4-.3-42.4-62.6 13.6-75.8-26.9-75.8-26.9
+           -10.2-25.9-24.9-32.8-24.9-32.8-20.4-14 1.5-13.7 1.5-13.7 22.6 1.6 34.5 23.2
+           34.5 23.2 20 34.3 52.6 24.4 65.5 18.7 2-14.5 7.8-24.4 14.1-30
+           -50-5.7-102.5-25-102.5-111.3 0-24.6 8.8-44.8 23.2-60.6
+           -2.3-5.7-10.1-28.8 2.2-60.1 0 0 18.9-6 62 23.1 18-5 37.3-7.5 56.5-7.6
+           19.2.1 38.6 2.6 56.6 7.6 43.1-29.1 62-23.1 62-23.1 12.3 31.3 4.5 54.4
+           2.2 60.1 14.4 15.8 23.2 36 23.2 60.6 0 86.5-52.6 105.5-102.7 111.1
+           8 6.9 15.1 20.5 15.1 41.3 0 29.8-.3 53.9-.3 61.2 0 6 4 13 15.5 10.8
+           C399.5 439.9 464 355.5 464 256 464 132.3 363.7 32 256 32z"/>
+</svg> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+ <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="muzamil.jpg" alt="Akash">
+          <p class="name">Muzammil Akhtar</p>
+        </div>
+        <div class="card-back">
+          <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+          <div class="social">
+           <a href="https://www.linkedin.com/in/muzammil-akhtar-ba27b9380?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+              <!-- LinkedIn Icon -->
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40" fill="#0A66C2">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+</svg>
+
+            </a>
+           <a href="https://github.com/d259-muzzzuuu-legend" target="_blank" rel="noopener noreferrer">
+  <!-- GitHub Icon -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="40" height="40"  fill="#000000">
+  <path d="M256 32C132.3 32 32 132.3 32 256c0 99.5 64.5 183.9 153.9 213.8
+           11.3 2 15.4-4.9 15.4-10.9 0-5.4-.2-23.4-.3-42.4-62.6 13.6-75.8-26.9-75.8-26.9
+           -10.2-25.9-24.9-32.8-24.9-32.8-20.4-14 1.5-13.7 1.5-13.7 22.6 1.6 34.5 23.2
+           34.5 23.2 20 34.3 52.6 24.4 65.5 18.7 2-14.5 7.8-24.4 14.1-30
+           -50-5.7-102.5-25-102.5-111.3 0-24.6 8.8-44.8 23.2-60.6
+           -2.3-5.7-10.1-28.8 2.2-60.1 0 0 18.9-6 62 23.1 18-5 37.3-7.5 56.5-7.6
+           19.2.1 38.6 2.6 56.6 7.6 43.1-29.1 62-23.1 62-23.1 12.3 31.3 4.5 54.4
+           2.2 60.1 14.4 15.8 23.2 36 23.2 60.6 0 86.5-52.6 105.5-102.7 111.1
+           8 6.9 15.1 20.5 15.1 41.3 0 29.8-.3 53.9-.3 61.2 0 6 4 13 15.5 10.8
+           C399.5 439.9 464 355.5 464 256 464 132.3 363.7 32 256 32z"/>
+</svg> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+ <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="abhi.jpg" alt="Akash">
+          <p class="name">Ch Abhijeet Achary</p>
+        </div>
+        <div class="card-back">
+          <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+          <div class="social">
+           <a href="https://www.linkedin.com/in/ch-abhijeet-achary-27421836b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+              <!-- LinkedIn Icon -->
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40" fill="#0A66C2">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+</svg>
+
+            </a>
+           <a href="https://github.com/Abhijeet2923" target="_blank" rel="noopener noreferrer">
+  <!-- GitHub Icon -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="40" height="40"  fill="#000000">
+  <path d="M256 32C132.3 32 32 132.3 32 256c0 99.5 64.5 183.9 153.9 213.8
+           11.3 2 15.4-4.9 15.4-10.9 0-5.4-.2-23.4-.3-42.4-62.6 13.6-75.8-26.9-75.8-26.9
+           -10.2-25.9-24.9-32.8-24.9-32.8-20.4-14 1.5-13.7 1.5-13.7 22.6 1.6 34.5 23.2
+           34.5 23.2 20 34.3 52.6 24.4 65.5 18.7 2-14.5 7.8-24.4 14.1-30
+           -50-5.7-102.5-25-102.5-111.3 0-24.6 8.8-44.8 23.2-60.6
+           -2.3-5.7-10.1-28.8 2.2-60.1 0 0 18.9-6 62 23.1 18-5 37.3-7.5 56.5-7.6
+           19.2.1 38.6 2.6 56.6 7.6 43.1-29.1 62-23.1 62-23.1 12.3 31.3 4.5 54.4
+           2.2 60.1 14.4 15.8 23.2 36 23.2 60.6 0 86.5-52.6 105.5-102.7 111.1
+           8 6.9 15.1 20.5 15.1 41.3 0 29.8-.3 53.9-.3 61.2 0 6 4 13 15.5 10.8
+           C399.5 439.9 464 355.5 464 256 464 132.3 363.7 32 256 32z"/>
+</svg> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+ <div class="card">
+      <div class="card-inner">
+        <div class="card-front">
+          <img src="akash.jpg" alt="Akash">
+          <p class="name">Akash Choudhary</p>
+        </div>
+        <div class="card-back">
+          <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.</p>
+          <div class="social">
+            <a href="https://www.linkedin.com/in/akash-choudhary-3b5674357?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+              <!-- LinkedIn Icon -->
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="40" height="40" fill="#0A66C2">
+  <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>
+</svg>
+
+            </a>
+           <a href="https://github.com/akash007choudhary?tab=packages" target="_blank" rel="noopener noreferrer">
+  <!-- GitHub Icon -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width="40" height="40"  fill="#000000">
+  <path d="M256 32C132.3 32 32 132.3 32 256c0 99.5 64.5 183.9 153.9 213.8
+           11.3 2 15.4-4.9 15.4-10.9 0-5.4-.2-23.4-.3-42.4-62.6 13.6-75.8-26.9-75.8-26.9
+           -10.2-25.9-24.9-32.8-24.9-32.8-20.4-14 1.5-13.7 1.5-13.7 22.6 1.6 34.5 23.2
+           34.5 23.2 20 34.3 52.6 24.4 65.5 18.7 2-14.5 7.8-24.4 14.1-30
+           -50-5.7-102.5-25-102.5-111.3 0-24.6 8.8-44.8 23.2-60.6
+           -2.3-5.7-10.1-28.8 2.2-60.1 0 0 18.9-6 62 23.1 18-5 37.3-7.5 56.5-7.6
+           19.2.1 38.6 2.6 56.6 7.6 43.1-29.1 62-23.1 62-23.1 12.3 31.3 4.5 54.4
+           2.2 60.1 14.4 15.8 23.2 36 23.2 60.6 0 86.5-52.6 105.5-102.7 111.1
+           8 6.9 15.1 20.5 15.1 41.3 0 29.8-.3 53.9-.3 61.2 0 6 4 13 15.5 10.8
+           C399.5 439.9 464 355.5 464 256 464 132.3 363.7 32 256 32z"/>
+</svg> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+</body>
+</html>

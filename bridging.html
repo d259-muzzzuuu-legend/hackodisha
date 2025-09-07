@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+     <link rel="stylesheet" href="aus.css">
+</head>
+<body>
+    <!-- Quick Trade -->
+                <div class="card two">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">Quick Bridge</h2>
+                            
+                            <p class="card-subtitle"> Current balance : 0.00 ETH</p>
+                        </div>
+                    </div>
+
+                    <!-- <div class="trading-tabs">
+                        <button class="tab-button " onclick="switchTab(this, 'Transfer')">Transfer</button>
+                        <button class="tab-button " onclick="switchTab(this, 'Receive')">Receive</button>
+                    </div> -->
+
+                    <div class="trading-form">
+                        <div class="connect" style="margin-bottom: 12px; display: flex; gap: 8px; align-items: center;">
+                            <button class="cntbtn" id="backButton" onclick="window.location.href='index.html'">⬅ Back</button>
+                            <div id="walletStatus" style="margin-top: 0; color: #94a3b8;"></div>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">Amount (ETH)</label>
+                            <input type="text" class="input-field" placeholder="0.00" id="tradeAmount">
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Select conersion token</label>
+                            <select class="input-field" id="assetSelect">
+                              
+                                <option>BlockDAG (BDAG)</option>
+                                
+                            </select>
+                        </div>
+
+                        <div class="price-display">
+                            <span>Current Price</span>
+                            <span class="positive">$3,354.23</span>
+                        </div>
+
+                        <div class="price-display">
+                            <span>Gas Estimation </span>
+                            <span>= 0.00 ETH</span>
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" id="bridgeButton">Bridge</button>
+                        </div>
+                    </div>
+                </div>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    <script src="bridge.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hackodisha project crypto!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <link rel="stylesheet" href="aus.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="logo-icon"> &#8383</div>
+                Ðappify
+            </div>
+
+            <ul class="nav-menu">
+                <!-- <li><a href="abt.html" class="nav-btn ">Dashboard</a></li> -->
+                <li><a href="bridging.html" class="nav-btn" >Bridging</a></li>
+                <li><a href="transfer.html" class="nav-btn">ETH Transaction</a></li>
+                  <li><a href="portfoli.html" class="nav-btn">PORTFOLIO</a></li>
+                <li><a href="aboutus.html" class="nav-btn">About Us</a></li>
+               
+            </ul>
+
+            <div class="user-section">
+                <div class="balance-display">
+                    <span id="totalBalance">$24,567.89 USD</span>
+                </div>
+                <div class="asset-icon">MA</div>
+            </div>
+        </header> 
+
+        <!-- Main Dashboard -->
+        <div class="dashboard-grid">
+            <!-- Left Panel - Portfolio Overview -->
+            <div>
+                <div class="intro">
+                 Bridge Ethereum into BlockDAG with secure, efficient cross-chain technology, enabling fast conversion of ETH to BDAG tokens. Experience seamless interoperability, reduced fees, and expanded opportunities across both ecosystems for trading, staking, and growth.
+                </div>
+
+                <div class="connect">
+                    <button class="cntbtn" id="connectButton">
+                        Connect Wallet
+                    </button>
+                    <div id="walletStatus" style="margin-top: 8px; color: #94a3b8;"></div>
+                    
+                </div>
+
+                <!-- Market Overview -->
+                <div class="card ">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">Market Overview</h2>
+                            <p class="card-subtitle">Top performing assets</p>
+                        </div>
+                    </div>
+
+                    <div class="market-grid">
+                        <div class="market-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4>BTC/USD</h4>
+                                    <p style="color: #94a3b8; font-size: 12px;">Bitcoin</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div>$43,463.12</div>
+                                    <div class="negative" style="font-size: 12px;">-2.34%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="market-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4>ETH/USD</h4>
+                                    <p style="color: #94a3b8; font-size: 12px;">Ethereum</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div>$3,354.23</div>
+                                    <div class="positive" style="font-size: 12px;">+5.67%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="market-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4>SOL/USD</h4>
+                                    <p style="color: #94a3b8; font-size: 12px;">Solana</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div>$76.45</div>
+                                    <div class="positive" style="font-size: 12px;">+8.92%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="market-item">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4>BDAG/USD</h4>
+                                    <p style="color: #94a3b8; font-size: 12px;">BlockDAG</p>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div>$0.1496</div>
+                                    <div class="positive" style="font-size: 12px;">+12.45%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

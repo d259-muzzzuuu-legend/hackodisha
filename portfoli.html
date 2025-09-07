@@ -1,0 +1,156 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="aus.css">
+
+
+</head>
+
+<body>
+    <!-- Asset Holdings -->
+    <div class="card2">
+        <div class="card-header">
+            <div>
+                <h2 class="card-title">Your Holdings</h2>
+                <p class="card-subtitle">Current cryptocurrency positions</p>
+            </div>
+        </div>
+
+        <div class="asset-list">
+            <div class="asset-item">
+                <div class="asset-info">
+                    <div class="asset-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
+                        ETH</div>
+                    <div class="asset-details">
+                        <h4>Ethereum</h4>
+                        <p>2.456 ETH</p>
+                    </div>
+                </div>
+                <div class="asset-price">
+                    <div>$8,234.12</div>
+                    <div style="color: #94a3b8; font-size: 12px;">$3,354.23 per ETH</div>
+                </div>
+                <div class="asset-change">
+                    <div class="positive">+5.67%</div>
+                    <div style="color: #10b981; font-size: 12px;">+$441.23</div>
+                </div>
+            </div>
+
+            <div class="asset-item">
+                <div class="asset-info">
+                    <div class="asset-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        BTC</div>
+                    <div class="asset-details">
+                        <h4>Bitcoin</h4>
+                        <p>0.125 BTC</p>
+                    </div>
+                </div>
+                <div class="asset-price">
+                    <div>$5,432.89</div>
+                    <div style="color: #94a3b8; font-size: 12px;">$43,463.12 per BTC</div>
+                </div>
+                <div class="asset-change">
+                    <div class="negative">-2.34%</div>
+                    <div style="color: #ef4444; font-size: 12px;">-$130.45</div>
+                </div>
+            </div>
+
+            <div class="asset-item">
+                <div class="asset-info">
+                    <div class="asset-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                        BDAG</div>
+                    <div class="asset-details">
+                        <h4>BlockDAG</h4>
+                        <p>15,678 BDAG</p>
+                    </div>
+                </div>
+                <div class="asset-price">
+                    <div>$2,345.67</div>
+                    <div style="color: #94a3b8; font-size: 12px;">$0.1496 per BDAG</div>
+                </div>
+                <div class="asset-change">
+                    <div class="positive">+12.45%</div>
+                    <div style="color: #10b981; font-size: 12px;">+$259.87</div>
+                </div>
+            </div>
+
+            <div class="asset-item">
+                <div class="asset-info">
+                    <div class="asset-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        SOL</div>
+                    <div class="asset-details">
+                        <h4>Solana</h4>
+                        <p>45.23 SOL</p>
+                    </div>
+                </div>
+                <div class="asset-price">
+                    <div>$3,456.78</div>
+                    <div style="color: #94a3b8; font-size: 12px;">$76.45 per SOL</div>
+                </div>
+                <div class="asset-change">
+                    <div class="positive">+8.92%</div>
+                    <div style="color: #10b981; font-size: 12px;">+$283.45</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Chart Card -->
+    <div class="card2">
+        <div class="card-header">
+            <h2 class="card-title">Portfolio Overview</h2>
+            <p class="card-subtitle">Value over time</p>
+        </div>
+
+        <!-- Chart container -->
+        <div class="chart-container">
+            <canvas id="portfolioChart"></canvas>
+        </div>
+    </div>
+    <div class="connect">
+        
+            <a href="index.html">
+<button class="cntbtn">dashboard</button>
+
+            </a>
+          
+        
+    </div>
+
+    <!-- Chart Card -->
+
+    <!-- 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('portfolioChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+      datasets: [{
+        label: 'Portfolio Value',
+        data: [10000, 10250, 10100, 10500, 10700, 11000],
+        borderColor: '#3b82f6',
+        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+</script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+</body>
+
+</html>
