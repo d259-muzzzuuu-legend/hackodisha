@@ -829,61 +829,152 @@ let provider;
       alert('Please enter a valid ETH amount.');
       return;
     }
+
+    // Disable button and show loading state
+    const originalText = bridgeBtn.textContent;
+    bridgeBtn.disabled = true;
+    bridgeBtn.textContent = 'Processing...';
+    
     try {
+      // Check network status first
+      const networkStatus = await checkNetworkStatus();
+      if (!networkStatus.isHealthy) {
+        throw new Error("Network connection issues detected. Please check your connection and try again.");
+      }
+
       const amountWei = ethers.utils.parseEther(amountEth);
       const sepoliaContract = new ethers.Contract(address_A, abi_A, signer);
-      const bdagContract = new ethers.Contract(address_B, abi_B, signer);
       const receiverAddress = await signer.getAddress();
 
-      const depositTx = await sepoliaContract.deposit({ value: amountWei });
-      await depositTx.wait();
+      // Get optimized gas price and estimate gas
+      const gasPrice = await getOptimalGasPrice();
+      const gasEstimate = await estimateGasForDeposit(sepoliaContract, amountWei);
+      
+      console.log("Gas estimate:", gasEstimate.toString());
+      console.log("Gas price:", ethers.utils.formatUnits(gasPrice, "gwei"), "gwei");
 
-      const mintTx = await bdagContract.mint(receiverAddress, amountWei);
-      await mintTx.wait();
+      // Check if user has enough balance for transaction + gas
+      const balance = await provider.getBalance(receiverAddress);
+      const totalCost = amountWei.add(gasEstimate.mul(gasPrice));
+      if (balance.lt(totalCost)) {
+        throw new Error(`Insufficient balance. You need ${ethers.utils.formatEther(totalCost)} ETH (${amountEth} ETH + ${ethers.utils.formatEther(gasEstimate.mul(gasPrice))} ETH gas)`);
+      }
 
-      alert(`✅ Bridging complete!\nDeposit TX: ${depositTx.hash}\nMint TX: ${mintTx.hash}`);
+      // Execute deposit with optimized gas parameters
+      const depositTx = await sepoliaContract.deposit({ 
+        value: amountWei,
+        gasLimit: gasEstimate,
+        gasPrice: gasPrice
+      });
+      
+      console.log("Deposit transaction sent:", depositTx.hash);
+      const receipt = await depositTx.wait();
+      console.log("Deposit confirmed:", receipt.transactionHash);
+
+      alert(`✅ ETH deposited successfully!\nTransaction Hash: ${depositTx.hash}\nGas Used: ${receipt.gasUsed.toString()}\n\nNote: BDAG tokens will be minted by the relayer after verification.`);
     } catch (error) {
       console.error('Bridging error:', error);
-      alert(`❌ Bridging failed: ${error.message}`);
+      let errorMessage = error.message;
+      
+      // Provide more specific error messages
+      if (error.message.includes("insufficient funds")) {
+        errorMessage = "Insufficient ETH balance for transaction and gas fees.";
+      } else if (error.message.includes("gas")) {
+        errorMessage = "Gas estimation failed. Please try with a smaller amount or check network conditions.";
+      } else if (error.message.includes("user rejected")) {
+        errorMessage = "Transaction was rejected by user.";
+      }
+      
+      alert(`❌ Bridging failed: ${errorMessage}`);
+    } finally {
+      // Restore button state
+      bridgeBtn.disabled = false;
+      bridgeBtn.textContent = originalText;
     }
   });
 })();
 
-// Bridge ETH to BDAG (without bridge contract)
-document.getElementById('bridgeButton').addEventListener("click", async () => {
-  const amountEth = document.getElementById('tradeAmount').value;
-  if (!amountEth || isNaN(amountEth) || parseFloat(amountEth) <= 0) {
-    alert("Please enter a valid ETH amount.");
-    return;
+// Network status and gas optimization functions
+async function checkNetworkStatus() {
+  try {
+    const network = await provider.getNetwork();
+    const blockNumber = await provider.getBlockNumber();
+    console.log("Connected to network:", network.name, "Chain ID:", network.chainId);
+    console.log("Current block:", blockNumber);
+    return { network, blockNumber, isHealthy: true };
+  } catch (error) {
+    console.error("Network check failed:", error);
+    return { isHealthy: false, error };
   }
+}
 
-  if (!signer) {
-    alert("Please connect your wallet first.");
+async function getGasPrice() {
+  try {
+    const gasPrice = await provider.getGasPrice();
+    return gasPrice;
+  } catch (error) {
+    console.error("Error fetching gas price:", error);
+    // Fallback gas price based on network
+    return ethers.utils.parseUnits("20", "gwei");
+  }
+}
+
+async function getOptimalGasPrice() {
+  try {
+    // Try to get gas price with some buffer for faster confirmation
+    const gasPrice = await provider.getGasPrice();
+    // Add 10% buffer for faster confirmation
+    return gasPrice.mul(110).div(100);
+  } catch (error) {
+    console.error("Error getting optimal gas price:", error);
+    return ethers.utils.parseUnits("25", "gwei");
+  }
+}
+
+async function estimateGasForDeposit(contract, amountWei) {
+  try {
+    const gasEstimate = await contract.estimateGas.deposit({ value: amountWei });
+    // Add 20% buffer to gas estimate
+    return gasEstimate.mul(120).div(100);
+  } catch (error) {
+    console.error("Gas estimation failed:", error);
+    // Fallback gas limit
+    return ethers.BigNumber.from("200000");
+  }
+}
+
+// Update gas estimation display
+async function updateGasEstimation(amountEth) {
+  const gasEstimationElement = document.getElementById('gasEstimation');
+  if (!gasEstimationElement) return;
+  
+  if (!amountEth || isNaN(amountEth) || parseFloat(amountEth) <= 0) {
+    gasEstimationElement.textContent = "= 0.00 ETH";
     return;
   }
 
   try {
     const amountWei = ethers.utils.parseEther(amountEth);
-    const sepoliaContract = new ethers.Contract(address_A, abi_A, signer);
-    const bdagContract = new ethers.Contract(address_B, abi_B, signer);
-    const receiverAddress = await signer.getAddress();
-
-    // Step 1: Deposit ETH on Sepolia
-    console.log("Depositing ETH on Sepolia...");
-    const depositTx = await sepoliaContract.deposit({ value: amountWei });
-    await depositTx.wait();
-    console.log("Deposit TX:", depositTx.hash);
-
-    // Step 2: Simulate minting BDAG tokens (normally done by backend relayer)
-    console.log("Minting BDAG tokens...");
-    const mintTx = await bdagContract.mint(receiverAddress, amountWei);
-    await mintTx.wait();
-    console.log("Mint TX:", mintTx.hash);
-
-    alert(`✅ Bridging complete!\nDeposit TX: ${depositTx.hash}\nMint TX: ${mintTx.hash}`);
+    const sepoliaContract = new ethers.Contract(address_A, abi_A, provider);
+    const gasEstimate = await estimateGasForDeposit(sepoliaContract, amountWei);
+    const gasPrice = await getOptimalGasPrice();
+    const gasCost = gasEstimate.mul(gasPrice);
+    const gasCostEth = ethers.utils.formatEther(gasCost);
+    
+    gasEstimationElement.textContent = `= ${parseFloat(gasCostEth).toFixed(6)} ETH`;
   } catch (error) {
-    console.error("Bridging error:", error);
-    alert(`❌ Bridging failed: ${error.message}`);
+    console.error("Error updating gas estimation:", error);
+    gasEstimationElement.textContent = "= ~0.001 ETH";
+  }
+}
+
+// Add event listener for gas estimation updates
+document.addEventListener('DOMContentLoaded', function() {
+  const amountInput = document.getElementById('tradeAmount');
+  if (amountInput) {
+    amountInput.addEventListener('input', function() {
+      updateGasEstimation(this.value);
+    });
   }
 });
 
